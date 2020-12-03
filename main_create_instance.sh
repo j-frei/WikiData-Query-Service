@@ -24,20 +24,23 @@ checkSuccess() {
     fi
 }
 
+# Add logs directory
+mkdir -p logs
+
 # Set JAVA_HOME
 JAVA_HOME_default=$(readlink -m $(which java)/../..)
 export JAVA_HOME=${JAVA_HOME:-"$JAVA_HOME_default"}
 
 if [ ! -d ".deps_installed" ]; then
     echo "Ensuring dependencies..."
-    ./sub_setup_deps.sh
+    ./sub_setup_deps.sh > ./logs/log_dependencies.txt 2>&1
     checkSuccess $?
     touch .deps_installed
 fi
 
 if [ ! -d "./wikidata-query-rdf" ]; then
     echo "Cloning wikidata-query-rdf repository..."
-    git clone https://github.com/wikimedia/wikidata-query-rdf
+    git clone https://github.com/wikimedia/wikidata-query-rdf  > ./logs/log_clone_query_rdf.txt 2>&1
     checkSuccess $?
     cd wikidata-query-rdf
     echo "Selecting commit..."
@@ -51,7 +54,7 @@ dist_exists=$?
 if [ $dist_exists -eq 0 ]; then
     echo "Compiling repository content..."
     cd wikidata-query-rdf
-    mvn package
+    mvn package  > ./logs/log_maven_package.txt 2>&1
     checkSuccess $?
     cp ./wikidata-query-rdf/dist/target/service-*-dist.tar.gz ./service-dist.tar.gz
     cd ..
@@ -86,7 +89,7 @@ fi
 if [ ! -d ./data/preprocessed ]; then
     mkdir -p ./data/preprocessed
     echo "Run preprocessing with munge.sh..."
-    ./service/munge.sh -f ./data/latest-all.ttl.gz -d ./data/preprocessed -l de
+    ./service/munge.sh -f ./data/latest-all.ttl.gz -d ./data/preprocessed -l de  > ./logs/log_munge_preprocessing.txt 2>&1
     checkSuccess $? ./data/preprocessed
 else
     echo "Preprocessing with munge.sh already performed."
