@@ -1,0 +1,5 @@
+data/
+service-dist.tar.gz
+service/
+wikidata-query-rdf/
+.deps_installed
