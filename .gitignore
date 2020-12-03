@@ -1,4 +1,5 @@
 data/
+logs/
 service-dist.tar.gz
 service/
 wikidata-query-rdf/
