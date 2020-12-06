@@ -115,7 +115,7 @@ fi
 # Data loading with loadData.sh 
 if [ ! -f ./data/.loadingData ]; then
     echo "Run data loading with loadData.sh..."
-    ./service/loadData.sh -n wdq -d ./data/preprocessed > ./logs/log_loadData 2>&1
+    ./service/loadData.sh -n wdq -d $(pwd)/data/preprocessed > ./logs/log_loadData 2>&1
     checkSuccess $?
     touch ./data/.loadingData
 else
