@@ -94,3 +94,30 @@ if [ ! -d ./data/preprocessed ]; then
 else
     echo "Preprocessing with munge.sh already performed."
 fi
+
+
+# check whether server is running...
+if curl -Is http://localhost:9999/bigdata 2>/dev/null | grep "HTTP/1.1" 1>/dev/null; then
+    # Page is up and running!
+    echo "Server 'http://localhost:9999/bigdata' is available"
+else
+    # Server is not running...
+    echo -n "Server is not running... Starting server now..."
+    nohup 2>&1 sh -c "HOST=0.0.0.0 ./service/runBlazegraph.sh" &>./service/blazegraph.log &
+    echo -n "Server started -> Wait 10 secs until availability check..."
+    sleep 10
+    echo -n "Checking availability..."
+    curl -Is http://localhost:9999/bigdata 2>/dev/null | grep "HTTP/1.1" 1>/dev/null
+    checkSuccess $?
+fi
+ 
+
+# Data loading with loadData.sh 
+if [ ! -f ./data/.loadingData ]; then
+    echo "Run data loading with loadData.sh..."
+    ./service/loadData.sh -n wdq -d ./data/preprocessed > ./logs/log_loadData 2>&1
+    checkSuccess $?
+    touch ./data/.loadingData
+else
+    echo "Data loading with loadData.sh already performed."
+fi
