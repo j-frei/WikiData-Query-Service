@@ -5,7 +5,7 @@ cd $(dirname "$0")
 
 # Check last command and remove file if given
 checkSuccess() {
-    if [ $1 -eq 0 ]; then 
+    if [ $1 -eq 0 ]; then
         echo "...succeeded."
     else
         echo -n "...but execution FAILED!"
@@ -68,10 +68,10 @@ if [ ! -d "./service" ]; then
     echo "Rearrange directory data"
     mv "./service_tmp/$(ls ./service_tmp)" "./service"
     checkSuccess $?
-    rm -rf "./service_tmp"    
+    rm -rf "./service_tmp"
 fi
 
-# Download Wikipedia dump 
+# Download Wikipedia dump
 if [ ! -f ./data/latest-all.ttl.gz ]; then
     mkdir -p ./data
     echo "Downloading Wikipedia RDF dump..."
@@ -85,7 +85,7 @@ else
 fi
 
 
-# Preprocessing with munge.sh 
+# Preprocessing with munge.sh
 if [ ! -d ./data/preprocessed ]; then
     mkdir -p ./data/preprocessed
     echo "Run preprocessing with munge.sh..."
@@ -110,9 +110,9 @@ else
     curl -Is http://localhost:9999/bigdata 2>/dev/null | grep "HTTP/1.1" 1>/dev/null
     checkSuccess $?
 fi
- 
 
-# Data loading with loadData.sh 
+
+# Data loading with loadData.sh
 if [ ! -f ./data/.loadingData ]; then
     echo "Run data loading with loadData.sh..."
     ./service/loadData.sh -n wdq -d $(pwd)/data/preprocessed > ./logs/log_loadData 2>&1
@@ -120,4 +120,15 @@ if [ ! -f ./data/.loadingData ]; then
     touch ./data/.loadingData
 else
     echo "Data loading with loadData.sh already performed."
+fi
+
+
+# Index update loading with loadData.sh
+if [ ! -f ./data/.updateingData ]; then
+    echo "Run data loading with loadData.sh..."
+    ./service/runUpdate.sh -n wdq -l de -S > ./logs/log_runUpdate 2>&1
+    checkSuccess $?
+    touch ./data/.updateingData
+else
+    echo "Updater service with runUpdate.sh already performed."
 fi
