@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  wikidata-query-service:
+    build: ./wikidata-query-service
+    image: wikidata-query-service:latest
+    restart: unless-stopped
+    ports:
+      - 9999:9999
+    volumes:
+      - ./blazegraph:/wikidata/service
+
+  wikidata-loader:
+    build: ./wikidata-loader
+    image: wikidata-loader:latest
+    restart: "no"
+    volumes:
+      - ./loader-data:/wikidata/data
+
+
