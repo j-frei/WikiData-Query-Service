@@ -124,11 +124,11 @@ fi
 
 
 # Index update loading with runUpdate.sh
-if [ ! -f ./data/.updateingData ]; then
+if [ ! -f ./data/.updatedData ]; then
     echo "Run updater script with runUpdate.sh.."
     ./service/runUpdate.sh -n wdq -l de -S > ./logs/log_runUpdate 2>&1
     checkSuccess $?
-    touch ./data/.updateingData
+    touch ./data/.updatedData
 else
     echo "Updater service with runUpdate.sh already performed."
 fi
