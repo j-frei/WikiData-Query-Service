@@ -5,6 +5,10 @@ cd $(dirname "$0")
 set -eEu -o pipefail
 source utils.sh
 
+# Wait for server to be accessible
+waitForBlazegraph.sh
+
+# Run data loading pipeline
 echo "Step 01 - Download Data"
 01-downloadData.sh
 echo "Step 02 - Preprocess Data"
