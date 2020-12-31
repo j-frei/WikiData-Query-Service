@@ -10,10 +10,10 @@ source utils.sh
 
 # Run data loading pipeline
 echo "Step 01 - Download Data"
-./01-downloadData.sh
+./01_downloadData.sh
 echo "Step 02 - Preprocess Data"
-./02-preprocessData.sh
+./02_preprocessData.sh
 echo "Step 03 - Load Data (Takes >12 days)"
-./03-loadData.sh
+./03_loadData.sh
 echo "Step 04 - Update Data (Takes >12 days)"
-./04-runUpdate.sh
+./04_runUpdate.sh
