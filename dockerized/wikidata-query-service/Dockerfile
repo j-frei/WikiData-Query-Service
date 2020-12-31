@@ -33,5 +33,5 @@ RUN mv ./wikidata-query-rdf/dist/target/service-*-dist.tar.gz ./service-dist.tar
 RUN mkdir -p "./service_tmp" && tar -C "./service_tmp" -xvf "./service-dist.tar.gz" && \
         mv "./service_tmp/$(ls ./service_tmp)" "./service" && rm -rf "./service_tmp"
 
-CMD ["sh", "-c", "HOST=0.0.0.0 ./service/Blazegraph.sh"]
+CMD ["sh", "-c", "HOST=0.0.0.0 ./service/runBlazegraph.sh"]
 EXPOSE 9999
