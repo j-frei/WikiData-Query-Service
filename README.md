@@ -34,3 +34,21 @@ docker-compose run wikidata-loader bash
 # Entering Docker container...
 ./01-04_runAll.sh
 ```
+
+#### Import Existing Wikidata File
+```bash
+import_file="./wikidata.jnl"
+wikidata_container="dockerized_wikidata-query-service_1"
+# Copy file
+docker cp $import_file ${wikidata_container}:/wikidata/service/wikidata.jnl
+# Restart container
+docker restart $wikidata_container
+```
+
+#### Export Wikidata File
+```bash
+export_path="./wikidata.jnl"
+wikidata_container="dockerized_wikidata-query-service_1"
+# Copy file
+docker cp ${wikidata_container}:/wikidata/service/wikidata.jnl $export_path
+```
