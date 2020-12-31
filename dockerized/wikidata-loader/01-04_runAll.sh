@@ -6,14 +6,14 @@ set -eEu -o pipefail
 source utils.sh
 
 # Wait for server to be accessible
-waitForBlazegraph.sh
+./waitForBlazegraph.sh
 
 # Run data loading pipeline
 echo "Step 01 - Download Data"
-01-downloadData.sh
+./01-downloadData.sh
 echo "Step 02 - Preprocess Data"
-02-preprocessData.sh
+./02-preprocessData.sh
 echo "Step 03 - Load Data (Takes >12 days)"
-03-loadData.sh
+./03-loadData.sh
 echo "Step 04 - Update Data (Takes >12 days)"
-04-runUpdate.sh
+./04-runUpdate.sh
