@@ -26,12 +26,11 @@ RUN cd ./wikidata-query-rdf && git checkout b7ea4f1
 
 # Compile files and only extract/keep compiled package
 RUN cd ./wikidata-query-rdf && mvn package
-
-RUN mv ./wikidata-query-rdf/dist/target/service-*-dist.tar.gz ../service-dist.tar.gz && \
-        cd .. && rm -rf ./wikidata-query-rdf
+RUN mv ./wikidata-query-rdf/dist/target/service-*-dist.tar.gz ./service-dist.tar.gz && \
+        rm -rf ./wikidata-query-rdf
 
 # Extract compiled data
-RUN tar -C "./service_tmp" -xvf "./service-dist.tar.gz" && \
+RUN mkdir -p "./service_tmp" && tar -C "./service_tmp" -xvf "./service-dist.tar.gz" && \
         mv "./service_tmp/$(ls ./service_tmp)" "./service" && rm -rf "./service_tmp"
 
 CMD ["sh", "-c", "HOST=0.0.0.0 ./service/Blazegraph.sh"]
