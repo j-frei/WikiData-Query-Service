@@ -25,7 +25,7 @@ WORKDIR /wikidata
 
 # Clone wikidata query source code
 RUN git clone https://github.com/wikimedia/wikidata-query-rdf wikidata-query-rdf
-RUN cd ./wikidata-query-rdf && git checkout b7ea4f1
+RUN cd ./wikidata-query-rdf && git checkout 209746cb
 
 # Compile files and only extract/keep compiled package
 RUN cd ./wikidata-query-rdf && mvn package
