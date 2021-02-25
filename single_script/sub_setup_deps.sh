@@ -45,7 +45,7 @@ for (( i=0; i<${#required_commands[*]}; ++i)); do
     cmd=${required_commands[$i]}
     pkg=${ubuntu_packages[$i]}
 
-    if [ ! which $cmd 2>&1 >/dev/null ]; then
+    if ! which $cmd 2>&1 >/dev/null; then
         # command is missing
         if [ -n "$(uname -a | grep Ubuntu)" ]; then
             # Check whether we need to update the package index
