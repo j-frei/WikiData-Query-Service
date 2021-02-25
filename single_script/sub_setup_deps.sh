@@ -45,7 +45,7 @@ for (( i=0; i<${#required_commands[*]}; ++i)); do
     cmd=${required_commands[$i]}
     pkg=${ubuntu_packages[$i]}
 
-    if [ ! which $req_cmd 2>&1 >/dev/null ]; then
+    if [ ! which $cmd 2>&1 >/dev/null ]; then
         # command is missing
         if [ -n "$(uname -a | grep Ubuntu)" ]; then
             # Check whether we need to update the package index
@@ -59,7 +59,7 @@ for (( i=0; i<${#required_commands[*]}; ++i)); do
             sudo apt-get install -y $pkg
             checkSuccess $?
         else
-            echo "Please install command: $req_cmd"
+            echo "Please install command: $cmd"
             exit -1
         fi
     else
