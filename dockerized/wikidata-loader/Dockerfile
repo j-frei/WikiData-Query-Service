@@ -6,7 +6,14 @@
 FROM maven:3-openjdk-8 as mvn_builder
 WORKDIR /wdt
 
-# Remove blocked HTTP mirrors
+# Remove blocked HTTP mirrors:
+#    <mirror>
+#      <id>maven-default-http-blocker</id>
+#      <mirrorOf>external:http:*</mirrorOf>
+#      <name>Pseudo repository to mirror external repositories initially using HTTP.</name>
+#      <url>http://0.0.0.0/</url>
+#      <blocked>true</blocked>
+#    </mirror>
 RUN sed -e '159,165d' $MAVEN_HOME/conf/settings.xml
 
 # Clone source code
