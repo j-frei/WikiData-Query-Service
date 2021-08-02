@@ -14,7 +14,7 @@ WORKDIR /wdt
 #      <url>http://0.0.0.0/</url>
 #      <blocked>true</blocked>
 #    </mirror>
-RUN sed -e '159,165d' $MAVEN_HOME/conf/settings.xml
+RUN sed -i -e '159,165d' $MAVEN_HOME/conf/settings.xml
 
 # Clone source code
 RUN git clone https://github.com/wikimedia/wikidata-query-rdf wikidata-query-rdf
