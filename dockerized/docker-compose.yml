@@ -1,17 +1,20 @@
 version: '3'
 
 services:
-  wikidata-query-service:
+  query-service:
     build: ./wikidata-query-service
     image: wikidata-query-service:latest
     restart: unless-stopped
     ports:
       - 9999:9999
 
-  wikidata-loader:
+  loader:
     build: ./wikidata-loader
     image: wikidata-loader:latest
-    restart: "no"
+    environment:
+      - WIKI_LANG=de
+      - WIKI_UPDATE_SLEEP_SEC=172800
+    restart: "unless-stopped"
     volumes:
       - ./loader-data:/wikidata/data
 

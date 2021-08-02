@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 old_cwd=$(pwd)
 cd $(dirname "$0")

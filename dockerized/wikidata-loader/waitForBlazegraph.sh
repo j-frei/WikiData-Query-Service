@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # check whether server is running...
 while [ ! curl -Is http://wikidata-query-service:9999/bigdata 2>/dev/null | grep "HTTP/1.1" 1>/dev/null 2>&1 ]; do
