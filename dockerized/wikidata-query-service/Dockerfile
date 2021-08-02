@@ -2,6 +2,9 @@
 FROM maven:3-openjdk-8 as mvn_builder
 WORKDIR /wdt
 
+# Remove blocked HTTP mirrors
+RUN sed -e '159,165d' $MAVEN_HOME/conf/settings.xml
+
 # Clone source code
 RUN git clone https://github.com/wikimedia/wikidata-query-rdf wikidata-query-rdf
 # [OPTIONAL] Fix version
