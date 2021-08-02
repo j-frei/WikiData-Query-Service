@@ -1,6 +1,6 @@
 # WikiData Blazegraph Query Endpoint
 
-This `docker-compose`-setup provides an WikiData Blazegraph query endpoint service including the preparation and update scripts.
+This `docker-compose`-setup provides a WikiData Blazegraph query endpoint service including the preparation and update scripts.
 
 ## How to Run
 Launch the docker-compose project with a given prefix:
