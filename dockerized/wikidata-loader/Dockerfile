@@ -57,7 +57,7 @@ RUN mkdir -p "./service_tmp" && tar -C "./service_tmp" -xvf "./service-dist.tar.
 
 # Add user scripts
 RUN mkdir -p /wikidata/data
-COPY scripts/scripts/utils.sh /wikidata/utils.sh
+COPY scripts/utils.sh /wikidata/utils.sh
 COPY scripts/01-04_runAll.sh /wikidata/01-04_runAll.sh
 COPY scripts/01_downloadData.sh /wikidata/01_downloadData.sh
 COPY scripts/02_preprocessData.sh /wikidata/02_preprocessData.sh
