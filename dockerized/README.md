@@ -6,7 +6,7 @@ This `docker-compose`-setup provides an WikiData Blazegraph query endpoint servi
 Launch the docker-compose project with a given prefix:
 ```bash
 # Run containers with "wikidata_" prefix
-docker-compose up -d -p "wikidata"
+docker-compose -p "wikidata" up -d
 
 # [Choice 1] Trigger scripts
 docker-compose exec "./01-04_runAll.sh"
