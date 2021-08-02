@@ -12,6 +12,7 @@ docker-compose -p "wikidata" up -d
 docker-compose exec "./01-04_runAll.sh"
 
 # [Choice 2] Trigger scripts manually
+# Service is available after ./03_loadData.sh
 docker-compose exec "./01_downloadData.sh"
 docker-compose exec "./02_preprocessData.sh"
 docker-compose exec "./03_loadData.sh"
