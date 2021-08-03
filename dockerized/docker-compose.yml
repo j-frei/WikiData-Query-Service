@@ -17,5 +17,6 @@ services:
     restart: "unless-stopped"
     volumes:
       - ./loader-data:/wikidata/data
+      - ./loader-logs:/wikidata/logs
 
 
