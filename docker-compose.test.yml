@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  test:
+    image: ubuntu:latest
+    environment:
+      - TEST=
+    command: ["sleep", "infinity"]
+
+
