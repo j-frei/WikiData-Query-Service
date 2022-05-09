@@ -36,6 +36,7 @@ RUN apt-get update && \
 # Prepare
 RUN mkdir -p /wikidata
 WORKDIR /wikidata
+RUN mkdir -p /wikidata/data
 
 # Import from build
 COPY --from=mvn_builder /wdt/service-dist.tar.gz /wikidata/service-dist.tar.gz
@@ -51,5 +52,5 @@ RUN apt-get update && \
 RUN mkdir -p "./service_tmp" && tar -C "./service_tmp" -xvf "./service-dist.tar.gz" && \
         mv "./service_tmp/$(ls ./service_tmp)" "./service" && rm -rf "./service_tmp"
 
-CMD ["sh", "-c", "HOST=0.0.0.0 ./service/runBlazegraph.sh"]
+CMD ["sh", "-c", "HOST=0.0.0.0 ./service/runBlazegraph.sh", "-d", "/wikidata/data"]
 EXPOSE 9999
