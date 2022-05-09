@@ -3,8 +3,7 @@
 set -e
 
 if [ ! -f "/wikidata/service/data/wikidata.jnl" ]; then
-    echo "Initialize empty wikidata file"
-    mv "/wikidata/service/wikidata.jnl" "/wikidata/service/data/wikidata.jnl"
+    echo "No wikidata file... Blazegraph will create a new file..."
 fi
 
 exec "$@"
