@@ -14,7 +14,7 @@ services:
     build: ./wikidata-loader
     image: wikidata-loader:latest
     environment:
-      - WIKI_LANG=de
+      - WIKI_LANG_PARAM=
       - WIKI_UPDATE_SLEEP_SEC=172800
     restart: "unless-stopped"
     volumes:
