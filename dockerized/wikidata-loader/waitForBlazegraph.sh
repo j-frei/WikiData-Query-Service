@@ -7,10 +7,6 @@ until $(curl --output /dev/null --silent --head --fail http://query-service:9999
     sleep 10
     echo -n "Checking availability..."
 done
-    echo "Server is not running... Waiting for 10 secs..."
-    sleep 10
-    echo -n "Checking availability..."
-done
 
 # Final check (can fail, if CTRL+C is sent)
 if [ ! $(curl --output /dev/null --silent --head --fail http://query-service:9999/bigdata) ]; then

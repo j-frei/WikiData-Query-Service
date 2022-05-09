@@ -6,7 +6,7 @@ set -eEu -o pipefail
 source utils.sh
 
 # Wait for server to be accessible
-./waitForBlazegraph.sh
+/waitForBlazegraph.sh
 
 # Run data loading pipeline
 echo "Step 01 - Download Data"

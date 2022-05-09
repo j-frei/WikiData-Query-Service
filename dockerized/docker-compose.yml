@@ -8,7 +8,7 @@ services:
     ports:
       - 9999:9999
     volumes:
-      - ./wikidata:/wikidata/data
+      - ./wikidata:/wikidata/service/data
 
   loader:
     build: ./wikidata-loader
@@ -20,5 +20,3 @@ services:
     volumes:
       - ./loader-data:/wikidata/data
       - ./loader-logs:/wikidata/logs
-
-

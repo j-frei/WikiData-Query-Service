@@ -55,6 +55,11 @@ RUN apt-get update && \
 RUN mkdir -p "./service_tmp" && tar -C "./service_tmp" -xvf "./service-dist.tar.gz" && \
         mv "./service_tmp/$(ls ./service_tmp)" "./service" && rm -rf "./service_tmp"
 
+RUN mkdir -p /wikidata/service/data
+
+# Patch wikidata database file
+RUN sed -i 's|wikidata.jnl|data/wikidata.jnl|g' service/RWStore.properties
+
 # Add user scripts
 RUN mkdir -p /wikidata/data
 COPY scripts/utils.sh /wikidata/utils.sh
