@@ -3,7 +3,7 @@
 set -e
 
 if [ ! -f "/wikidata/service/data/wikidata.jnl" ]; then
-    echo "No wikidata file... Blazegraph will create a new file..."
+    echo "No wikidata file found..."
 fi
 
 exec "$@"
