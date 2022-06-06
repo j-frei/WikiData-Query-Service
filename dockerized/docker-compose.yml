@@ -6,9 +6,10 @@ services:
     image: wikidata-query-service:latest
     restart: unless-stopped
     ports:
-      - 9999:9999
+      - 9997:9999
     volumes:
-      - ./wikidata:/wikidata/service/data
+      - ./wikidata-data:/wikidata/service/data
+      - ./wikidata-logs:/var/log/wdqs
       - ./loader-data:/wikidata/data
 
   loader:

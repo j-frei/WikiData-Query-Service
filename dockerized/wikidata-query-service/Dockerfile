@@ -59,5 +59,5 @@ RUN sed -i 's|wikidata.jnl|data/wikidata.jnl|g' service/RWStore.properties
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
-CMD ["sh", "-c", "HOST=0.0.0.0 ./service/runBlazegraph.sh"]
+CMD ["sh", "-c", "HOST=0.0.0.0 ./service/runBlazegraph.sh >/dev/null 2>&1"]
 EXPOSE 9999

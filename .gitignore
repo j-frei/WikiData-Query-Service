@@ -4,3 +4,9 @@ service-dist.tar.gz
 service/
 wikidata-query-rdf/
 .deps_installed
+
+# Docker mounts
+dockerized/loader-data/
+dockerized/loader-logs/
+dockerized/wikidata-data/
+dockerized/wikidata-logs/
